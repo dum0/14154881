@@ -8,9 +8,12 @@
 
 import UIKit
 
+
+
 class DraggedImageView: UIImageView {
     
     var startLocation: CGPoint?
+    var myDelegate: subviewDelegate?
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         startLocation = touches.first?.location(in: self)
@@ -23,6 +26,7 @@ class DraggedImageView: UIImageView {
         let dy = currentLocation!.y - startLocation!.y
         
         self.center = CGPoint(x:self.center.x+CGFloat(dx), y: self.center.y+CGFloat(dy))
+        self.myDelegate?.changeSomething()
     }
     /*
     // Only override draw() if you perform custom drawing.

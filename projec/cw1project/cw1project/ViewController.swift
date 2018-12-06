@@ -7,22 +7,31 @@
 //
 
 import UIKit
-/*protocol subviewDelegate {
+protocol subviewDelegate {
     func changeSomething()
-}*/
+}
 
-class ViewController: UIViewController{
+class ViewController: UIViewController, subviewDelegate{
     var dynamicAnimator: UIDynamicAnimator!
     var collisionBehavior: UICollisionBehavior!
     var gravityBehavior: UIGravityBehavior!
     var dynamicItemBehavior: UIDynamicItemBehavior!
-    //var planeAnimator: UIDynamicAnimator
+    var planeAnimator: UIDynamicAnimator!
+    //var cloudAnimator: UIDynamicAnimator!
     var scores = 0;
     var GameTimer = Timer()
+    var ScoresArray: [UIImageView] = []
     var countDown = 60
     
     @IBOutlet weak var planeView: DraggedImageView!
+    func changeSomething() {
+        collisionBehavior.removeAllBoundaries()
+        self.collisionBehavior.addBoundary(withIdentifier: "PlayerPlane" as NSCopying, for: UIBezierPath(rect: self.planeView.frame))
+    }
+    
     var roadView = UIImageView(image: UIImage(named: "road1.png"))
+    //var cloudView = UIImageView(image:nil)
+    
     
     
     //func changeSomething() {
@@ -43,6 +52,8 @@ class ViewController: UIViewController{
         
         //let time DispatchTime.now() + 60
         //DispatchQueue.main.asyncAfter(deadline: time){}
+        
+        
         
         var imageArray: [UIImage]!
         roadView.frame = UIScreen.main.bounds
@@ -71,6 +82,29 @@ class ViewController: UIViewController{
         ]
         planeView.image = UIImage.animatedImage(with: planeArray, duration: 0)
         
+        planeView.myDelegate = self
+        planeAnimator = UIDynamicAnimator(referenceView: self.view)
+        dynamicItemBehavior = UIDynamicItemBehavior(items:[])
+        collisionBehavior = UICollisionBehavior(items:[])
+        
+        planeAnimator.addBehavior(dynamicItemBehavior)
+        collisionBehavior = UICollisionBehavior(items:[])
+        collisionBehavior.translatesReferenceBoundsIntoBoundary = false
+        planeAnimator.addBehavior(collisionBehavior)
+        
+        /*var cloudArray: [UIImage]!
+        var cloudView = UIImageView(image: nil)
+        cloudView.frame = CGRect(x: 500, y: 100, width: 30, height: 50)
+        self.view.bringSubview(toFront: cloudView)
+        cloudArray = [UIImage(named:"cloud.png")!,UIImage(named:"cloud2.png")!]
+        cloudView.image = UIImage.animatedImage(with: cloudArray, duration: 0)
+        
+        planeAnimator = UIDynamicAnimator(referenceView: self.view)
+        
+        dynamicItemBehavior = UIDynamicItemBehavior(items: [cloudView])
+        self.dynamicItemBehavior.addLinearVelocity(CGPoint(x: 500, y: 100), for: cloudView)
+        planeAnimator.addBehavior(dynamicItemBehavior)*/
+        
         var birdArray: [UIImage]!
         
         //declare an array of UIImageView: birdView[10]
@@ -82,7 +116,7 @@ class ViewController: UIViewController{
         self.view.addSubview(birdView)
         birdArray = [UIImage(named: "bird1.png")!, UIImage(named: "bird2.png")!,UIImage(named: "bird3.png")!,UIImage(named: "bird4.png")!,UIImage(named: "bird5.png")!,UIImage(named: "bird6.png")!,UIImage(named: "bird7.png")!, UIImage(named: "bird8.png")!,UIImage(named: "bird9.png")!,UIImage(named: "bird10.png")!]
         birdView.image = UIImage.animatedImage(with: birdArray, duration: 0)
-
+        
         var birdView2 = UIImageView(image: nil)
         birdView2.frame = CGRect(x: 500, y: 0, width: 30, height: 50)
         self.view.addSubview(birdView2)
@@ -126,7 +160,7 @@ class ViewController: UIViewController{
         var birdView10 = UIImageView(image: nil)
         birdView10.frame = CGRect(x: 500, y: 150, width: 30, height: 50)
         self.view.addSubview(birdView10)
-        birdView10.image = UIImage.animatedImage(with: birdArray, duration: 0)
+            birdView10.image = UIImage.animatedImage(with: birdArray, duration: 0)
 
         //UKKit dynamics --> movement with linear velocity
         dynamicAnimator = UIDynamicAnimator(referenceView: self.view)
@@ -171,23 +205,23 @@ class ViewController: UIViewController{
         self.dynamicItemBehavior.addLinearVelocity(CGPoint(x: 400, y: 150), for: birdView10)
         dynamicAnimator.addBehavior(dynamicItemBehavior)
         
-        collisionBehavior = UICollisionBehavior(items:[birdView])
+        collisionBehavior = UICollisionBehavior(items:[birdView, birdView2, birdView3])
         collisionBehavior.translatesReferenceBoundsIntoBoundary = true
-        dynamicAnimator.addBehavior(collisionBehavior)
+            dynamicAnimator.addBehavior(collisionBehavior)
         
         //gravityBehavior = UIGravityBehavior(items: [birdView])
         //dynamicAnimator.addBehavior(gravityBehavior)
         
-        collisionBehavior = UICollisionBehavior(items:[birdView2])
-        collisionBehavior.translatesReferenceBoundsIntoBoundary = true
-        dynamicAnimator.addBehavior(collisionBehavior)
+        //collisionBehavior = UICollisionBehavior(items:[birdView2])
+        //collisionBehavior.translatesReferenceBoundsIntoBoundary = true
+        //dynamicAnimator.addBehavior(collisionBehavior)
         
        // gravityBehavior = UIGravityBehavior(items: [birdView2])
         //dynamicAnimator.addBehavior(gravityBehavior)
         
-        collisionBehavior = UICollisionBehavior(items:[birdView3])
-        collisionBehavior.translatesReferenceBoundsIntoBoundary = true
-        dynamicAnimator.addBehavior(collisionBehavior)
+        //collisionBehavior = UICollisionBehavior(items:[birdView3])
+        //collisionBehavior.translatesReferenceBoundsIntoBoundary = true
+        //dynamicAnimator.addBehavior(collisionBehavior)
         
         //gravityBehavior = UIGravityBehavior(items: [birdView3])
         //dynamicAnimator.addBehavior(gravityBehavior)
