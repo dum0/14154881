@@ -12,21 +12,49 @@ protocol subviewDelegate {
 }
 
 class ViewController: UIViewController, subviewDelegate{
+    
+    @IBOutlet weak var GameScore: UILabel!
+    
     var dynamicAnimator: UIDynamicAnimator!
     var collisionBehavior: UICollisionBehavior!
     var gravityBehavior: UIGravityBehavior!
     var dynamicItemBehavior: UIDynamicItemBehavior!
     var planeAnimator: UIDynamicAnimator!
     //var cloudAnimator: UIDynamicAnimator!
-    var scores = 0;
+    var Scores = 0;
     var GameTimer = Timer()
     var ScoresArray: [UIImageView] = []
+    var planes: [UIImageView] = []
+    let button = UIButton(frame: CGRect(x:140, y:100, width:120, height: 100))
     var countDown = 60
+    
+    /*let GameOver = UIImageView(image:nil)
+    
+    @objc func Replay (sender: UIButton!){
+        GameScore.removeFromSuperview()
+        button.removeFromSuperview()
+        Scores = 0;
+        
+        for i in planes{
+            i.removeFromSuperview()
+        }
+        viewDidLoad()
+    }*/
+    
     
     @IBOutlet weak var planeView: DraggedImageView!
     func changeSomething() {
         collisionBehavior.removeAllBoundaries()
         self.collisionBehavior.addBoundary(withIdentifier: "PlayerPlane" as NSCopying, for: UIBezierPath(rect: self.planeView.frame))
+        
+       /* for birdView in ScoresArray {
+            if (planeView.frame.intersects(birdView.frame)){
+                Scores = Scores - 2
+                self.GameScore.text = String (self.Scores)
+            }
+        }*/
+        
+        
     }
     
     var roadView = UIImageView(image: UIImage(named: "road1.png"))
@@ -53,7 +81,8 @@ class ViewController: UIViewController, subviewDelegate{
         //let time DispatchTime.now() + 60
         //DispatchQueue.main.asyncAfter(deadline: time){}
         
-        
+        let time = DispatchTime.now() + 20
+        DispatchQueue.main.asyncAfter(deadline: time){}
         
         var imageArray: [UIImage]!
         roadView.frame = UIScreen.main.bounds
@@ -61,6 +90,21 @@ class ViewController: UIViewController, subviewDelegate{
         imageArray = [UIImage(named:"road1.png")!,
                       UIImage(named:"road1.png")!,UIImage(named:"road2.png")!,UIImage(named:"road3.png")!,UIImage(named:"road4.png")!,UIImage(named:"road5.png")!,UIImage(named:"road6.png")!,UIImage(named:"road7.png")!,UIImage(named:"road8.png")!,UIImage(named:"road9.png")!,UIImage(named:"road10.png")!,UIImage(named:"road11.png")!,UIImage(named:"road12.png")!,UIImage(named:"road13.png")!,UIImage(named:"road14.png")!,UIImage(named:"road15.png")!,UIImage(named:"road16.png")!,UIImage(named:"road17.png")!,UIImage(named:"road18.png")!,UIImage(named:"road19.png")!]
         roadView.image = UIImage.animatedImage(with: imageArray, duration: 1)
+        
+        var cloudView = UIImageView(image:nil)
+        cloudView.image = UIImage(named: "cloud.png")
+        cloudView.frame = CGRect(x:0, y: 50, width: 300, height: 200)
+        self.view.addSubview(cloudView)
+        
+        
+        var treeArray: [UIImage]!
+        var treeView = UIImageView(image: nil)
+        treeView.image = UIImage(named: "tree1.png")
+        treeView.frame = CGRect(x:0, y:110, width: UIScreen.main.bounds.width, height: 140)
+        self.view.addSubview(treeView)
+        
+        treeArray = [UIImage(named: "tree1.png")!,UIImage(named: "tree2.png")!,UIImage(named: "tree3.png")!,UIImage(named: "tree4.png")!,UIImage(named: "tree5.png")!,UIImage(named: "tree6.png")!,UIImage(named: "tree7.png")!,UIImage(named: "tree8.png")!,UIImage(named: "tree9.png")!,UIImage(named: "tree10.png")!,UIImage(named: "tree11.png")!,UIImage(named: "tree12.png")!,UIImage(named: "tree13.png")!,UIImage(named: "tree14.png")!,UIImage(named: "tree15.png")!,UIImage(named: "tree16.png")!,UIImage(named: "tree17.png")!,]
+        treeView.image = UIImage.animatedImage(with: treeArray, duration: 2)
         
         var planeArray: [UIImage]!
         self.view.bringSubview(toFront: planeView)
@@ -125,9 +169,9 @@ class ViewController: UIViewController, subviewDelegate{
         var birdView3 = UIImageView(image: nil)
         birdView3.frame = CGRect(x: 500, y: 50, width: 30, height: 50)
         self.view.addSubview(birdView3)
-        birdView3.image = UIImage.animatedImage(with: birdArray, duration: 1)
+            birdView3.image = UIImage.animatedImage(with: birdArray, duration: 1)
 
-        var birdView4 = UIImageView(image: nil)
+        /*var birdView4 = UIImageView(image: nil)
         birdView4.frame = CGRect(x: 500, y: 150, width: 30, height: 50)
         self.view.addSubview(birdView4)
         birdView4.image = UIImage.animatedImage(with: birdArray, duration: 0)
@@ -160,24 +204,24 @@ class ViewController: UIViewController, subviewDelegate{
         var birdView10 = UIImageView(image: nil)
         birdView10.frame = CGRect(x: 500, y: 150, width: 30, height: 50)
         self.view.addSubview(birdView10)
-            birdView10.image = UIImage.animatedImage(with: birdArray, duration: 0)
+            birdView10.image = UIImage.animatedImage(with: birdArray, duration: 0)*/
 
         //UKKit dynamics --> movement with linear velocity
         dynamicAnimator = UIDynamicAnimator(referenceView: self.view)
         
         dynamicItemBehavior = UIDynamicItemBehavior(items: [birdView])
-        self.dynamicItemBehavior.addLinearVelocity(CGPoint(x: 500, y: 100), for: birdView)
+        self.dynamicItemBehavior.addLinearVelocity(CGPoint(x: UIScreen.main.bounds.width, y: 100), for: birdView)
         dynamicAnimator.addBehavior(dynamicItemBehavior)
         
         dynamicItemBehavior = UIDynamicItemBehavior(items: [birdView2])
-        self.dynamicItemBehavior.addLinearVelocity(CGPoint(x: 500, y: 0), for: birdView2)
+        self.dynamicItemBehavior.addLinearVelocity(CGPoint(x: UIScreen.main.bounds.width, y: 0), for: birdView2)
         dynamicAnimator.addBehavior(dynamicItemBehavior)
         
         dynamicItemBehavior = UIDynamicItemBehavior(items: [birdView3])
-        self.dynamicItemBehavior.addLinearVelocity(CGPoint(x: 500, y: 50), for: birdView3)
+        self.dynamicItemBehavior.addLinearVelocity(CGPoint(x: UIScreen.main.bounds.width, y: 50), for: birdView3)
         dynamicAnimator.addBehavior(dynamicItemBehavior)
         
-        dynamicItemBehavior = UIDynamicItemBehavior(items: [birdView4])
+        /*dynamicItemBehavior = UIDynamicItemBehavior(items: [birdView4])
         self.dynamicItemBehavior.addLinearVelocity(CGPoint(x: 500, y: 150), for: birdView4)
         dynamicAnimator.addBehavior(dynamicItemBehavior)
         
@@ -203,11 +247,37 @@ class ViewController: UIViewController, subviewDelegate{
         
         dynamicItemBehavior = UIDynamicItemBehavior(items: [birdView10])
         self.dynamicItemBehavior.addLinearVelocity(CGPoint(x: 400, y: 150), for: birdView10)
-        dynamicAnimator.addBehavior(dynamicItemBehavior)
+            dynamicAnimator.addBehavior(dynamicItemBehavior)*/
         
         collisionBehavior = UICollisionBehavior(items:[birdView, birdView2, birdView3])
         collisionBehavior.translatesReferenceBoundsIntoBoundary = true
             dynamicAnimator.addBehavior(collisionBehavior)
+        
+       /* self.ScoresArray.append((birdView))
+        self.Scores += 2
+        self.GameScore.text = String(self.Scores)*/
+        
+        _ = UIScreen.main.bounds.width
+        _ = UIScreen.main.bounds.height
+        
+        /*let finishGame = DispatchTime.now() + 20
+        DispatchQueue.main.asyncAfter(deadline: finishGame) {
+            let end = self.storyboard?.instantiateViewController(withIdentifier: "ViewController2") as! ViewController
+            end.finalScore = self.GameScore.text!
+            
+            self.show(end, sender: nil)
+        }*/
+        
+            self.roadView = UIImageView (frame: CGRect(x:0, y:0, width: 0.05, height: 0.3))
+        
+        /*let finishGame = DispatchTime.now() + 20
+        DispatchQueue.main.asyncAfter(deadline: finishGame) {
+            let end = self.storyboard?.instantiateInitialViewController(withIdentifier: "ViewController2") as! ViewController2
+            end.finalScore = self.GameScore.text!
+            
+            self.show(end, sender: nil)
+            
+        }*/
         
         //gravityBehavior = UIGravityBehavior(items: [birdView])
         //dynamicAnimator.addBehavior(gravityBehavior)
@@ -283,7 +353,8 @@ class ViewController: UIViewController, subviewDelegate{
                 
             }
         }*/
-    }
+        
+        }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
