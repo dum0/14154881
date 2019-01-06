@@ -31,6 +31,15 @@
 		600B130D21B9740C002CB7BC /* tree15.png in Resources */ = {isa = PBXBuildFile; fileRef = 600B12F521B9740C002CB7BC /* tree15.png */; };
 		600B130E21B9740C002CB7BC /* tree16.png in Resources */ = {isa = PBXBuildFile; fileRef = 600B12F621B9740C002CB7BC /* tree16.png */; };
 		600B130F21B9740C002CB7BC /* tree17.png in Resources */ = {isa = PBXBuildFile; fileRef = 600B12F721B9740C002CB7BC /* tree17.png */; };
+		608890E021E246E6004D8552 /* goldCoin3.png in Resources */ = {isa = PBXBuildFile; fileRef = 608890D721E246E5004D8552 /* goldCoin3.png */; };
+		608890E121E246E6004D8552 /* goldCoin1.png in Resources */ = {isa = PBXBuildFile; fileRef = 608890D821E246E5004D8552 /* goldCoin1.png */; };
+		608890E221E246E6004D8552 /* goldCoin5.png in Resources */ = {isa = PBXBuildFile; fileRef = 608890D921E246E5004D8552 /* goldCoin5.png */; };
+		608890E321E246E6004D8552 /* goldCoin7.png in Resources */ = {isa = PBXBuildFile; fileRef = 608890DA21E246E5004D8552 /* goldCoin7.png */; };
+		608890E421E246E6004D8552 /* goldCoin2.png in Resources */ = {isa = PBXBuildFile; fileRef = 608890DB21E246E6004D8552 /* goldCoin2.png */; };
+		608890E521E246E6004D8552 /* goldCoin8.png in Resources */ = {isa = PBXBuildFile; fileRef = 608890DC21E246E6004D8552 /* goldCoin8.png */; };
+		608890E621E246E6004D8552 /* goldCoin9.png in Resources */ = {isa = PBXBuildFile; fileRef = 608890DD21E246E6004D8552 /* goldCoin9.png */; };
+		608890E721E246E6004D8552 /* goldCoin4.png in Resources */ = {isa = PBXBuildFile; fileRef = 608890DE21E246E6004D8552 /* goldCoin4.png */; };
+		608890E821E246E6004D8552 /* goldCoin6.png in Resources */ = {isa = PBXBuildFile; fileRef = 608890DF21E246E6004D8552 /* goldCoin6.png */; };
 		60F779EC21A6F36600AFD426 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60F779EB21A6F36600AFD426 /* AppDelegate.swift */; };
 		60F779EE21A6F36600AFD426 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60F779ED21A6F36600AFD426 /* ViewController.swift */; };
 		60F779F121A6F36600AFD426 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 60F779EF21A6F36600AFD426 /* Main.storyboard */; };
@@ -127,6 +136,15 @@
 		600B12F521B9740C002CB7BC /* tree15.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = tree15.png; path = ../../Images/tree15.png; sourceTree = "<group>"; };
 		600B12F621B9740C002CB7BC /* tree16.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = tree16.png; path = ../../Images/tree16.png; sourceTree = "<group>"; };
 		600B12F721B9740C002CB7BC /* tree17.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = tree17.png; path = ../../Images/tree17.png; sourceTree = "<group>"; };
+		608890D721E246E5004D8552 /* goldCoin3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = goldCoin3.png; path = ../../Images/goldCoin3.png; sourceTree = "<group>"; };
+		608890D821E246E5004D8552 /* goldCoin1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = goldCoin1.png; path = ../../Images/goldCoin1.png; sourceTree = "<group>"; };
+		608890D921E246E5004D8552 /* goldCoin5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = goldCoin5.png; path = ../../Images/goldCoin5.png; sourceTree = "<group>"; };
+		608890DA21E246E5004D8552 /* goldCoin7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = goldCoin7.png; path = ../../Images/goldCoin7.png; sourceTree = "<group>"; };
+		608890DB21E246E6004D8552 /* goldCoin2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = goldCoin2.png; path = ../../Images/goldCoin2.png; sourceTree = "<group>"; };
+		608890DC21E246E6004D8552 /* goldCoin8.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = goldCoin8.png; path = ../../Images/goldCoin8.png; sourceTree = "<group>"; };
+		608890DD21E246E6004D8552 /* goldCoin9.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = goldCoin9.png; path = ../../Images/goldCoin9.png; sourceTree = "<group>"; };
+		608890DE21E246E6004D8552 /* goldCoin4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = goldCoin4.png; path = ../../Images/goldCoin4.png; sourceTree = "<group>"; };
+		608890DF21E246E6004D8552 /* goldCoin6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = goldCoin6.png; path = ../../Images/goldCoin6.png; sourceTree = "<group>"; };
 		60F779E821A6F36600AFD426 /* cw1project.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = cw1project.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		60F779EB21A6F36600AFD426 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		60F779ED21A6F36600AFD426 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -238,6 +256,16 @@
 				60F779EB21A6F36600AFD426 /* AppDelegate.swift */,
 				60F779ED21A6F36600AFD426 /* ViewController.swift */,
 				60F77A1921A6F4B800AFD426 /* DraggedImageView.swift */,
+				60F779EF21A6F36600AFD426 /* Main.storyboard */,
+				608890D821E246E5004D8552 /* goldCoin1.png */,
+				608890DB21E246E6004D8552 /* goldCoin2.png */,
+				608890D721E246E5004D8552 /* goldCoin3.png */,
+				608890DE21E246E6004D8552 /* goldCoin4.png */,
+				608890D921E246E5004D8552 /* goldCoin5.png */,
+				608890DF21E246E6004D8552 /* goldCoin6.png */,
+				608890DA21E246E5004D8552 /* goldCoin7.png */,
+				608890DC21E246E6004D8552 /* goldCoin8.png */,
+				608890DD21E246E6004D8552 /* goldCoin9.png */,
 				600B12E021B9740C002CB7BC /* cloud.png */,
 				600B12E121B9740C002CB7BC /* cloud2.png */,
 				600B12E221B9740C002CB7BC /* coin.png */,
@@ -306,7 +334,6 @@
 				60F77A4421A6F54300AFD426 /* road17.png */,
 				60F77A4521A6F54300AFD426 /* road18.png */,
 				60F77A4621A6F54300AFD426 /* road19.png */,
-				60F779EF21A6F36600AFD426 /* Main.storyboard */,
 				60F779F221A6F36600AFD426 /* Assets.xcassets */,
 				60F779F421A6F36600AFD426 /* LaunchScreen.storyboard */,
 				60F779F721A6F36600AFD426 /* Info.plist */,
@@ -445,6 +472,7 @@
 				600B12F821B9740C002CB7BC /* cloud.png in Resources */,
 				60F77A6521A6F54300AFD426 /* road6.png in Resources */,
 				60F77A5321A6F54300AFD426 /* plane3.png in Resources */,
+				608890E621E246E6004D8552 /* goldCoin9.png in Resources */,
 				600B130E21B9740C002CB7BC /* tree16.png in Resources */,
 				60F77A6E21A6F54300AFD426 /* road15.png in Resources */,
 				60F77A6F21A6F54300AFD426 /* road16.png in Resources */,
@@ -460,6 +488,9 @@
 				60F77A4C21A6F54300AFD426 /* bird6.png in Resources */,
 				600B12FE21B9740C002CB7BC /* replay.png in Resources */,
 				60F77A6421A6F54300AFD426 /* road5.png in Resources */,
+				608890E421E246E6004D8552 /* goldCoin2.png in Resources */,
+				608890E121E246E6004D8552 /* goldCoin1.png in Resources */,
+				608890E221E246E6004D8552 /* goldCoin5.png in Resources */,
 				600B12FF21B9740C002CB7BC /* tree1.png in Resources */,
 				600B130B21B9740C002CB7BC /* tree13.png in Resources */,
 				60F77A5B21A6F54300AFD426 /* plane11.png in Resources */,
@@ -470,6 +501,7 @@
 				60F77A5E21A6F54300AFD426 /* plane14.png in Resources */,
 				600B130921B9740C002CB7BC /* tree11.png in Resources */,
 				60F77A6121A6F54300AFD426 /* road2.png in Resources */,
+				608890E721E246E6004D8552 /* goldCoin4.png in Resources */,
 				60F77A5221A6F54300AFD426 /* plane2.png in Resources */,
 				600B12F921B9740C002CB7BC /* cloud2.png in Resources */,
 				60F77A6D21A6F54300AFD426 /* road14.png in Resources */,
@@ -481,15 +513,19 @@
 				600B130621B9740C002CB7BC /* tree8.png in Resources */,
 				600B12FC21B9740C002CB7BC /* game_over.jpg in Resources */,
 				600B130A21B9740C002CB7BC /* tree12.png in Resources */,
+				608890E021E246E6004D8552 /* goldCoin3.png in Resources */,
 				60F77A4921A6F54300AFD426 /* bird3.png in Resources */,
 				60F77A4721A6F54300AFD426 /* bird1.png in Resources */,
 				60F77A6221A6F54300AFD426 /* road3.png in Resources */,
 				600B130421B9740C002CB7BC /* tree6.png in Resources */,
 				600B130521B9740C002CB7BC /* tree7.png in Resources */,
+				608890E821E246E6004D8552 /* goldCoin6.png in Resources */,
 				60F77A5421A6F54300AFD426 /* plane4.png in Resources */,
+				608890E321E246E6004D8552 /* goldCoin7.png in Resources */,
 				60F77A5521A6F54300AFD426 /* plane5.png in Resources */,
 				60F77A4821A6F54300AFD426 /* bird2.png in Resources */,
 				60F77A6321A6F54300AFD426 /* road4.png in Resources */,
+				608890E521E246E6004D8552 /* goldCoin8.png in Resources */,
 				60F77A5F21A6F54300AFD426 /* plane15.png in Resources */,
 				600B130121B9740C002CB7BC /* tree3.png in Resources */,
 				600B130F21B9740C002CB7BC /* tree17.png in Resources */,
