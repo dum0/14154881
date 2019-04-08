@@ -5,6 +5,9 @@
  */
 package users_ui;
 
+import guests_ui.guest_ui;
+import javax.swing.JFrame;
+
 
 
 /**
@@ -519,6 +522,12 @@ public class user_ui extends javax.swing.JFrame {
         jBtnulo.setBackground(new java.awt.Color(255, 51, 51));
         jBtnulo.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jBtnulo.setText("Logout");
+        jBtnulo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jBtnulo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnuloActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -882,6 +891,15 @@ public class user_ui extends javax.swing.JFrame {
     }
         // TODO add your handling code here:
     }//GEN-LAST:event_jBtnres2ActionPerformed
+
+    private void jBtnuloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnuloActionPerformed
+    guest_ui ur = new guest_ui();
+    ur.setVisible(true);
+    ur.pack();
+    ur.setLocationRelativeTo(null);
+    ur.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jBtnuloActionPerformed
 
     /**
      * @param args the command line arguments

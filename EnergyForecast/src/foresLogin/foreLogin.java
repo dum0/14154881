@@ -134,6 +134,11 @@ public class foreLogin extends javax.swing.JFrame {
         jBtnclea.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jBtnclea.setForeground(new java.awt.Color(255, 255, 255));
         jBtnclea.setText("Clear");
+        jBtnclea.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtncleaActionPerformed(evt);
+            }
+        });
 
         jlblregi.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jlblregi.setForeground(new java.awt.Color(255, 255, 255));
@@ -237,6 +242,11 @@ public class foreLogin extends javax.swing.JFrame {
     this.dispose();
         // TODO add your handling code here:
     }//GEN-LAST:event_jlblregiMouseClicked
+
+    private void jBtncleaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtncleaActionPerformed
+    System.exit(0);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jBtncleaActionPerformed
 
     /**
      * @param args the command line arguments

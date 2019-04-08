@@ -5,6 +5,9 @@
  */
 package guests_ui;
 
+import javax.swing.JFrame;
+
+
 /**
  *
  * @author User1

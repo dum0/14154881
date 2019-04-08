@@ -6,8 +6,15 @@
 package foresreg;
 
 import foresLogin.foreLogin;
+import java.sql.Connection;
+import java.sql.DriverManager;
 import javax.swing.JFrame;
 import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -319,6 +326,7 @@ public class forereg extends javax.swing.JFrame {
     }//GEN-LAST:event_jPasswordField3ActionPerformed
 
     private void jBtnclea2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnclea2ActionPerformed
+    System.exit(0);
         // TODO add your handling code here:
     }//GEN-LAST:event_jBtnclea2ActionPerformed
 
@@ -335,11 +343,47 @@ public class forereg extends javax.swing.JFrame {
     private void jBtnregiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnregiActionPerformed
     String forname = jTxtfna.getText();
     String sname = jTxtsna.getText();
-    String forename = jTxtuna2.getText();
+    String usrname = jTxtuna2.getText();
     String npass = String.valueOf(jPasswordField2.getPassword());
     String nrpass = String.valueOf(jPasswordField3.getPassword());
     String address1 = jTxtadd.getText();
     
+    if(usrname.equals(""))
+        {
+          JOptionPane.showMessageDialog(null, "Enter Username");  
+        }
+        else if(npass.equals(""))
+        {
+           JOptionPane.showMessageDialog(null, "Enter Password"); 
+        }
+        else if(!npass.equals(nrpass))
+        {
+           JOptionPane.showMessageDialog(null, "Passwords do not match"); 
+        }
+
+        else {
+        PreparedStatement ps;
+        String query = "INSERT INTO `the_app_users`(`u_fname`, `u_lname`, `u_uname`, `u_pass`, `u_address`) VALUES (?,?,?,?,?)"; 
+        
+        try {
+            ps = NuConnection.getConnection().prepareStatement(query);
+            
+            ps.setString(1, forname);
+            ps.setString(2, sname);
+            ps.setString(3, usrname);
+            ps.setString(4, npass);
+            ps.setString(5, address1);
+            
+            if(ps.executeUpdate() > 0)
+            {
+                JOptionPane.showMessageDialog(null, "New User Add");
+            }
+            
+// TODO add your handling code here:
+        } catch (SQLException ex) {
+            Logger.getLogger(forereg.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        }
     //PreparedStatement ps;
     //String query = "";
     
@@ -406,4 +450,18 @@ public class forereg extends javax.swing.JFrame {
     private javax.swing.JLabel jlblsna;
     private javax.swing.JLabel jlbluna2;
     // End of variables declaration//GEN-END:variables
-}
+
+    private static class NuConnection {
+        public static Connection getConnection(){
+    Connection con = null;
+    try{
+        Class.forName("com.mysql.jdbc.Driver");
+        con = DriverManager.getConnection("jdbc:mysql://localhost:3306/energy_forecast_db?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "root", "");
+    } catch (Exception ex) {
+        System.out.println(ex.getMessage());
+    }
+      
+    return con;
+    }}}
+      
+

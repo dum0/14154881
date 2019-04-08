@@ -34,7 +34,7 @@
                       <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jTxtthl" min="-2" pref="930" max="-2" attributes="0"/>
-                          <Component id="jlblwel" min="-2" pref="720" max="-2" attributes="0"/>
+                          <Component id="jlblwel" alignment="0" min="-2" pref="720" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <Group type="102" attributes="0">

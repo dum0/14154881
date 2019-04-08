@@ -5,6 +5,9 @@
  */
 package admins_ui;
 
+import guests_ui.guest_ui;
+import javax.swing.JFrame;
+
 /**
  *
  * @author User1
@@ -35,8 +38,8 @@ public class admin_ui extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel2 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTxtlou = new javax.swing.JTextArea();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
         jPanel3 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -51,7 +54,6 @@ public class admin_ui extends javax.swing.JFrame {
         jPnllogo3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jlbllogo2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images pr/Energy Forecast logo.png"))); // NOI18N
-        jlbllogo2.setPreferredSize(new java.awt.Dimension(203, 175));
 
         javax.swing.GroupLayout jPnllogo3Layout = new javax.swing.GroupLayout(jPnllogo3);
         jPnllogo3.setLayout(jPnllogo3Layout);
@@ -59,14 +61,14 @@ public class admin_ui extends javax.swing.JFrame {
             jPnllogo3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPnllogo3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jlbllogo2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jlbllogo2)
                 .addContainerGap(35, Short.MAX_VALUE))
         );
         jPnllogo3Layout.setVerticalGroup(
             jPnllogo3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPnllogo3Layout.createSequentialGroup()
                 .addGap(30, 30, 30)
-                .addComponent(jlbllogo2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jlbllogo2)
                 .addContainerGap(33, Short.MAX_VALUE))
         );
 
@@ -84,9 +86,18 @@ public class admin_ui extends javax.swing.JFrame {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        jTxtlou.setColumns(20);
-        jTxtlou.setRows(5);
-        jScrollPane1.setViewportView(jTxtlou);
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane3.setViewportView(jTable1);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -94,15 +105,15 @@ public class admin_ui extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 903, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 903, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(56, 56, 56)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 378, Short.MAX_VALUE)
-                .addContainerGap())
+                .addContainerGap()
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("List of users", jPanel2);
@@ -202,6 +213,12 @@ public class admin_ui extends javax.swing.JFrame {
         jBtnadminlo.setBackground(new java.awt.Color(255, 51, 51));
         jBtnadminlo.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jBtnadminlo.setText("Logout");
+        jBtnadminlo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jBtnadminlo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnadminloActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -247,6 +264,15 @@ public class admin_ui extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jBtnadminloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnadminloActionPerformed
+    guest_ui ur = new guest_ui();
+    ur.setVisible(true);
+    ur.pack();
+    ur.setLocationRelativeTo(null);
+    ur.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jBtnadminloActionPerformed
 
     /**
      * @param args the command line arguments
@@ -296,10 +322,10 @@ public class admin_ui extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPnllogo3;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTextArea jTxtlou;
+    private javax.swing.JTable jTable1;
     private javax.swing.JTextArea jTxtru;
     private javax.swing.JLabel jlbllogo2;
     // End of variables declaration//GEN-END:variables
