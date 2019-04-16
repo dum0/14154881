@@ -5,8 +5,18 @@
  */
 package foresLogin;
 
+
+import NusConnection.NuConnection;
+import admins_ui.admin_ui;
 import foresreg.forereg;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import users_ui.user_ui;
 
 /**
  *
@@ -129,6 +139,11 @@ public class foreLogin extends javax.swing.JFrame {
         jBtnlog.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jBtnlog.setForeground(new java.awt.Color(255, 255, 255));
         jBtnlog.setText("Login");
+        jBtnlog.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnlogActionPerformed(evt);
+            }
+        });
 
         jBtnclea.setBackground(new java.awt.Color(255, 51, 51));
         jBtnclea.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -247,6 +262,59 @@ public class foreLogin extends javax.swing.JFrame {
     System.exit(0);
         // TODO add your handling code here:
     }//GEN-LAST:event_jBtncleaActionPerformed
+
+    private void jBtnlogActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnlogActionPerformed
+    PreparedStatement ps;
+    PreparedStatement pst;
+    ResultSet sr;
+    ResultSet asr;
+     String usrname = jTxtuna.getText();
+     String passw = String.valueOf(jPasswordField1.getPassword());
+     
+     String query = "SELECT * FROM `registered_users` WHERE `user_uname`=? AND `user_pass` =?";
+     String adquery = "SELECT * FROM `privilege users` WHERE `username` =? AND `password` =?";
+     try {
+            ps = NuConnection.getConnection().prepareStatement(query);
+            pst = NuConnection.getConnection().prepareStatement(adquery);
+            ps.setString(1, usrname);
+            pst.setString(1, usrname);
+            ps.setString(2, passw);
+            pst.setString(2, passw);
+            
+            sr = ps.executeQuery();
+            asr = pst.executeQuery();
+            
+            if(sr.next())
+                {
+               user_ui ur = new user_ui();
+               ur.setVisible(true);
+               ur.pack();
+               ur.setLocationRelativeTo(null);
+               ur.setExtendedState(JFrame.MAXIMIZED_BOTH);
+               
+         
+            }
+            else if(asr.next())
+                {
+               admin_ui aui = new admin_ui();
+               aui.setVisible(true);
+               aui.pack();
+               aui.setLocationRelativeTo(null);
+               aui.setExtendedState(JFrame.MAXIMIZED_BOTH);
+               
+         
+            }
+            
+            else
+            {
+                JOptionPane.showMessageDialog(null, "Incorrect Username or Password");
+                
+            }
+            } catch (SQLException ex) {
+            Logger.getLogger(foreLogin.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jBtnlogActionPerformed
 
     /**
      * @param args the command line arguments

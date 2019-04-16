@@ -15,6 +15,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import guests_ui.guest_ui;
 
 public class Register_Form extends javax.swing.JFrame {
 
@@ -408,7 +409,7 @@ public class Register_Form extends javax.swing.JFrame {
             as.setString(1, username); 
             sr = as.executeQuery();
             
-            if(sr.next())
+            if(sr.next())   
             {
               checkUname = true;  
             }

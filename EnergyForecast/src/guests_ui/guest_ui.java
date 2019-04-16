@@ -5,7 +5,10 @@
  */
 package guests_ui;
 
+
+import foresreg.forereg;
 import javax.swing.JFrame;
+
 
 
 /**
@@ -127,6 +130,12 @@ public class guest_ui extends javax.swing.JFrame {
         jBtnreg.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jBtnreg.setForeground(new java.awt.Color(255, 255, 255));
         jBtnreg.setText("+Register");
+        jBtnreg.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jBtnreg.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnregActionPerformed(evt);
+            }
+        });
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel2.setText("To access more features please register");
@@ -391,6 +400,16 @@ public class guest_ui extends javax.swing.JFrame {
     
         // TODO add your handling code here:
     }//GEN-LAST:event_jBtnpresActionPerformed
+
+    private void jBtnregActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnregActionPerformed
+     forereg rgf = new forereg();
+    rgf.setVisible(true);
+    rgf.pack();
+    rgf.setLocationRelativeTo(null);
+    rgf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    this.dispose();
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jBtnregActionPerformed
 
     /**
      * @param args the command line arguments

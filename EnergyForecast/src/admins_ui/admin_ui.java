@@ -5,20 +5,41 @@
  */
 package admins_ui;
 
+
+
+import foresreg.forereg;
 import guests_ui.guest_ui;
+import java.sql.DriverManager;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import java.sql.ResultSet;
+import javax.swing.table.DefaultTableModel;
+import net.proteanit.sql.DbUtils;
 
 /**
  *
  * @author User1
  */
 public class admin_ui extends javax.swing.JFrame {
+    
+    Connection con = null;
+    PreparedStatement pst = null;
+    ResultSet sr = null;
+    
+        
+    
 
     /**
      * Creates new form admin_ui
      */
     public admin_ui() {
         initComponents();
+        
     }
 
     /**
@@ -32,22 +53,20 @@ public class admin_ui extends javax.swing.JFrame {
 
         jPnllogo3 = new javax.swing.JPanel();
         jlbllogo2 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        jBtnsuab = new javax.swing.JButton();
+        jBtnvuab = new javax.swing.JButton();
+        jBtnvuap = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jproTable = new javax.swing.JTable();
         jPanel3 = new javax.swing.JPanel();
-        jPanel4 = new javax.swing.JPanel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jTxtru = new javax.swing.JTextArea();
-        jPanel5 = new javax.swing.JPanel();
+        jBtnadnu = new javax.swing.JButton();
         jPanel6 = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
         jBtnadminlo = new javax.swing.JButton();
+        jBtnrmov = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -72,32 +91,39 @@ public class admin_ui extends javax.swing.JFrame {
                 .addContainerGap(33, Short.MAX_VALUE))
         );
 
-        jButton1.setBackground(new java.awt.Color(204, 204, 255));
-        jButton1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton1.setText("Search User's Bills (SUB)");
+        jBtnsuab.setBackground(new java.awt.Color(204, 204, 255));
+        jBtnsuab.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jBtnsuab.setText("Search User's Bills (SUB)");
+        jBtnsuab.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
-        jButton2.setBackground(new java.awt.Color(204, 204, 255));
-        jButton2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton2.setText("View User's Bills (VUB)");
+        jBtnvuab.setBackground(new java.awt.Color(204, 204, 255));
+        jBtnvuab.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jBtnvuab.setText("View User's Bills (VUB)");
+        jBtnvuab.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
-        jButton3.setBackground(new java.awt.Color(204, 204, 255));
-        jButton3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton3.setText("View User's Profiles (VUP)");
+        jBtnvuap.setBackground(new java.awt.Color(204, 204, 255));
+        jBtnvuap.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jBtnvuap.setText("View User's Profiles (VUP)");
+        jBtnvuap.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jBtnvuap.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnvuapActionPerformed(evt);
+            }
+        });
 
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jTabbedPane1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        jproTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "user_id", "user_fname", "user_lname", "user_address", "user_address", "user_pass"
             }
         ));
-        jScrollPane3.setViewportView(jTable1);
+        jScrollPane3.setViewportView(jproTable);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -105,7 +131,7 @@ public class admin_ui extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 903, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 1016, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -116,62 +142,42 @@ public class admin_ui extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("List of users", jPanel2);
+        jTabbedPane1.addTab("View User Profiles", jPanel2);
+
+        jBtnadnu.setBackground(new java.awt.Color(204, 255, 0));
+        jBtnadnu.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jBtnadnu.setText("Add New User");
+        jBtnadnu.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jBtnadnu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnadnuActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 923, Short.MAX_VALUE)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addComponent(jBtnadnu, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(659, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 445, Short.MAX_VALUE)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addComponent(jBtnadnu, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(241, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Add users", jPanel3);
-
-        jTxtru.setColumns(20);
-        jTxtru.setRows(5);
-        jScrollPane2.setViewportView(jTxtru);
-
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 903, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(32, 32, 32)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 391, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(22, Short.MAX_VALUE))
-        );
-
-        jTabbedPane1.addTab("Removed users", jPanel4);
-
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 923, Short.MAX_VALUE)
-        );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 445, Short.MAX_VALUE)
-        );
-
-        jTabbedPane1.addTab("VUP", jPanel5);
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 923, Short.MAX_VALUE)
+            .addGap(0, 1036, Short.MAX_VALUE)
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -184,7 +190,7 @@ public class admin_ui extends javax.swing.JFrame {
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 923, Short.MAX_VALUE)
+            .addGap(0, 1036, Short.MAX_VALUE)
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -220,6 +226,16 @@ public class admin_ui extends javax.swing.JFrame {
             }
         });
 
+        jBtnrmov.setBackground(new java.awt.Color(255, 0, 51));
+        jBtnrmov.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jBtnrmov.setText("Remove Users");
+        jBtnrmov.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jBtnrmov.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnrmovActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -229,9 +245,10 @@ public class admin_ui extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPnllogo3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(jButton2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(jBtnrmov, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jBtnvuab, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jBtnsuab, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jBtnvuap, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(40, 40, 40)
@@ -239,7 +256,7 @@ public class admin_ui extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jBtnadminlo)
-                        .addGap(61, 61, 61))))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -249,11 +266,13 @@ public class admin_ui extends javax.swing.JFrame {
                         .addGap(10, 10, 10)
                         .addComponent(jPnllogo3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(50, 50, 50)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jBtnvuap, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(10, 10, 10)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jBtnsuab, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(10, 10, 10)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jBtnvuab, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jBtnrmov, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(79, 79, 79)
                         .addComponent(jBtnadminlo)
@@ -274,6 +293,54 @@ public class admin_ui extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jBtnadminloActionPerformed
 
+    private void jBtnvuapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnvuapActionPerformed
+        showTable();
+
+  // TODO add your handling code here:
+    }//GEN-LAST:event_jBtnvuapActionPerformed
+
+    private void jBtnadnuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnadnuActionPerformed
+        forereg rgfu = new forereg();
+        rgfu.setVisible(true);
+        rgfu.pack();
+        rgfu.setLocationRelativeTo(null);
+        rgfu.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.dispose();
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jBtnadnuActionPerformed
+
+    private void jBtnrmovActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnrmovActionPerformed
+    
+    //Selected row function
+    try{
+        DefaultTableModel model = (DefaultTableModel) jproTable.getModel();    
+        int SelectedRowIndex = jproTable.getSelectedRow();
+        model.removeRow(SelectedRowIndex);
+    }catch (Exception ex)
+    {
+        JOptionPane.showMessageDialog(null, ex);
+    }
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jBtnrmovActionPerformed
+ public void showTable(){
+        try{
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/energy_forecast_db?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "root", "");
+            String sql = "SELECT * FROM `registered_users`";
+            pst = con.prepareStatement(sql);
+            sr = pst.executeQuery();
+            jproTable.setModel(DbUtils.resultSetToTableModel(sr));
+            
+           
+            
+            
+        }
+        catch(Exception ex){
+            JOptionPane.showMessageDialog(null, ex);
+            
+            
+            
+        }}
     /**
      * @param args the command line arguments
      */
@@ -311,22 +378,20 @@ public class admin_ui extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBtnadminlo;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jBtnadnu;
+    private javax.swing.JButton jBtnrmov;
+    private javax.swing.JButton jBtnsuab;
+    private javax.swing.JButton jBtnvuab;
+    private javax.swing.JButton jBtnvuap;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPnllogo3;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextArea jTxtru;
     private javax.swing.JLabel jlbllogo2;
+    private javax.swing.JTable jproTable;
     // End of variables declaration//GEN-END:variables
 }

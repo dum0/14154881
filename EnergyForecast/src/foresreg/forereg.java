@@ -15,6 +15,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import java.sql.ResultSet;
 
 /**
  *
@@ -348,31 +349,50 @@ public class forereg extends javax.swing.JFrame {
     String nrpass = String.valueOf(jPasswordField3.getPassword());
     String address1 = jTxtadd.getText();
     
-    if(usrname.equals(""))
-        {
-          JOptionPane.showMessageDialog(null, "Enter Username");  
-        }
-        else if(npass.equals(""))
-        {
-           JOptionPane.showMessageDialog(null, "Enter Password"); 
-        }
-        else if(!npass.equals(nrpass))
-        {
-           JOptionPane.showMessageDialog(null, "Passwords do not match"); 
+    if(forname.equals(""))
+    {
+        JOptionPane.showMessageDialog(null, "Enter Forename");  
+    }
+    else if(sname.equals(""))
+    {
+        JOptionPane.showMessageDialog(null, "Enter Surname");  
+    }
+    else if(usrname.equals(""))
+    {
+        JOptionPane.showMessageDialog(null, "Enter Username");  
+    }
+    
+    else if(npass.equals(""))
+    {
+        JOptionPane.showMessageDialog(null, "Enter Password"); 
+    }
+    
+    else if(!npass.equals(nrpass))
+    {
+        JOptionPane.showMessageDialog(null, "Passwords do not match!"); 
+    }
+    
+    else if(address1.equals(""))
+    {
+        JOptionPane.showMessageDialog(null, "Enter Address");  
+    }
+    
+    else if (checkUsername(usrname)){
+            JOptionPane.showMessageDialog(null, "Username Already Exists!");
         }
 
-        else {
+    else {
         PreparedStatement ps;
-        String query = "INSERT INTO `the_app_users`(`u_fname`, `u_lname`, `u_uname`, `u_pass`, `u_address`) VALUES (?,?,?,?,?)"; 
+        String query = "INSERT INTO `registered_users`( `user_fname`, `user_lname`, `user_address`, `user_uname`, `user_pass`) VALUES (?,?,?,?,?)"; 
         
         try {
             ps = NuConnection.getConnection().prepareStatement(query);
             
             ps.setString(1, forname);
             ps.setString(2, sname);
-            ps.setString(3, usrname);
-            ps.setString(4, npass);
-            ps.setString(5, address1);
+            ps.setString(3, address1);
+            ps.setString(4, usrname);
+            ps.setString(5, npass);
             
             if(ps.executeUpdate() > 0)
             {
@@ -384,6 +404,7 @@ public class forereg extends javax.swing.JFrame {
             Logger.getLogger(forereg.class.getName()).log(Level.SEVERE, null, ex);
         }
         }
+    
     //PreparedStatement ps;
     //String query = "";
     
@@ -391,7 +412,26 @@ public class forereg extends javax.swing.JFrame {
     
         // TODO add your handling code here:
     }//GEN-LAST:event_jBtnregiActionPerformed
-
+    public boolean checkUsername(String username)
+            {
+                PreparedStatement ps;
+                ResultSet sr;
+                boolean checkUname = false;
+                String query = "SELECT * FROM `registered_users` WHERE `user_uname`=?";
+        try {
+            ps = NuConnection.getConnection().prepareStatement(query);
+            ps.setString(1, username);
+            sr = ps.executeQuery();
+            
+            if(sr.next())
+            {
+                checkUname = true;
+            }           
+        }
+        catch (SQLException ex){
+            Logger.getLogger(forereg.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return checkUname;}
     /**
      * @param args the command line arguments
      */
