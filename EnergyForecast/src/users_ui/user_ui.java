@@ -5,9 +5,20 @@
  */
 package users_ui;
 
+import NusConnection.NuConnection;
 import foresLogin.foreLogin;
 import guests_ui.guest_ui;
+import java.awt.BorderLayout;
+import java.sql.Connection;
 import javax.swing.JFrame;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+
 
 
 
@@ -16,6 +27,8 @@ import javax.swing.JFrame;
  * @author User1
  */
 public class user_ui extends javax.swing.JFrame {
+    
+    
     double firstnum;
     double secondnum;
     double result;
@@ -78,15 +91,16 @@ public class user_ui extends javax.swing.JFrame {
         jBtnmul = new javax.swing.JButton();
         jBtndiv = new javax.swing.JButton();
         jBtnres = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
         jTxtbillcalc = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jTxtbdue = new javax.swing.JTextField();
-        jBtnvb = new javax.swing.JButton();
         jBtnaui = new javax.swing.JButton();
         jBtngui = new javax.swing.JButton();
         jBtnulo = new javax.swing.JButton();
+        jlblbillhelp = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -370,6 +384,9 @@ public class user_ui extends javax.swing.JFrame {
             }
         });
 
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel3.setText("Use calculator to estimate bills ");
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -407,13 +424,18 @@ public class user_ui extends javax.swing.JFrame {
                                     .addComponent(jBtnmin)
                                     .addComponent(jBtnadd)))
                             .addComponent(jBtnres, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(10, 10, 10)))
+                        .addGap(10, 10, 10))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(55, 55, 55)
+                .addGap(23, 23, 23)
+                .addComponent(jLabel3)
+                .addGap(18, 18, 18)
                 .addComponent(jTxtcalDisplay, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -470,7 +492,7 @@ public class user_ui extends javax.swing.JFrame {
         jLabel1.setText("Readings Comparison");
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLabel2.setText("Bill Due");
+        jLabel2.setText("Bill Due (£)");
 
         jTxtbdue.setEditable(false);
         jTxtbdue.setBackground(new java.awt.Color(255, 255, 255));
@@ -508,16 +530,6 @@ public class user_ui extends javax.swing.JFrame {
         jPanel1.add(jTabbedPane1);
         jTabbedPane1.setBounds(30, 20, 390, 350);
 
-        jBtnvb.setBackground(new java.awt.Color(51, 51, 255));
-        jBtnvb.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jBtnvb.setText("View Bills (VB)");
-        jBtnvb.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jBtnvb.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBtnvbActionPerformed(evt);
-            }
-        });
-
         jBtnaui.setBackground(new java.awt.Color(0, 102, 102));
         jBtnaui.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jBtnaui.setText("Admin Interface");
@@ -548,64 +560,82 @@ public class user_ui extends javax.swing.JFrame {
             }
         });
 
+        jlblbillhelp.setBackground(new java.awt.Color(0, 204, 102));
+        jlblbillhelp.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jlblbillhelp.setText("<html>PLEASE <br> VIEW <br> INFORMATION </html>");
+        jlblbillhelp.setBorder(javax.swing.BorderFactory.createMatteBorder(10, 10, 10, 10, new java.awt.Color(255, 51, 51)));
+        jlblbillhelp.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jlblbillhelp.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jlblbillhelpMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPnllogo2, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addComponent(jPnllogo2, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGap(12, 12, 12)
+                        .addComponent(jlblbillhelp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(30, 30, 30)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTxthl2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jlblwel2, javax.swing.GroupLayout.PREFERRED_SIZE, 772, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(30, 30, 30)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTxthl2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jlblwel2, javax.swing.GroupLayout.PREFERRED_SIZE, 772, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(58, 58, 58)
-                                .addComponent(jBtngui)
-                                .addGap(30, 30, 30)
-                                .addComponent(jBtnaui)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jBtnulo))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(jBtnvb, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(40, 40, 40)
-                                .addComponent(jCrdu1, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(70, 70, 70)
-                                .addComponent(jCrdu2, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(200, 200, 200)
-                                .addComponent(jCrateu))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jBtnpres2, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(10, 10, 10)
-                                .addComponent(jBtnres2, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(10, 10, 10)
-                                .addComponent(jBtnclear2, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(10, 10, 10)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTxtrdu1, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTxtrdu2, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTxtrateu, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTxtresu, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(50, 50, 50)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(434, 434, 434))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jBtnres2, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jBtnpres2, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jBtnclear2, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jTxtresu, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(56, 56, 56)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                                .addComponent(jCrdu1, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(jTxtrdu1, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                    .addComponent(jCrateu)
+                                                    .addComponent(jCrdu2, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addGroup(layout.createSequentialGroup()
+                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                        .addComponent(jTxtrdu2, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                    .addGroup(layout.createSequentialGroup()
+                                                        .addGap(48, 48, 48)
+                                                        .addComponent(jTxtrateu, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
+                                .addGap(18, 18, 18)
+                                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGap(58, 58, 58)
+                        .addComponent(jBtngui)
+                        .addGap(30, 30, 30)
+                        .addComponent(jBtnaui)
+                        .addGap(453, 453, 453)
+                        .addComponent(jBtnulo)))
+                .addContainerGap(499, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(10, 10, 10)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPnllogo2, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jPnllogo2, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(64, 64, 64)
+                        .addComponent(jlblbillhelp, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jTxthl2, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(22, 22, 22)
@@ -614,36 +644,32 @@ public class user_ui extends javax.swing.JFrame {
                             .addComponent(jBtnaui, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jBtngui, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(14, 14, 14)
-                        .addComponent(jlblwel2, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(10, 10, 10)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addComponent(jCrdu1)
-                        .addGap(39, 39, 39)
-                        .addComponent(jCrdu2)
-                        .addGap(49, 49, 49)
-                        .addComponent(jCrateu)
-                        .addGap(59, 59, 59)
+                        .addComponent(jlblwel2, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jBtnpres2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jBtnres2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jBtnclear2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(38, 38, 38)
-                                .addComponent(jBtnvb, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(283, 283, 283)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jBtnclear2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jBtnpres2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jBtnres2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jTxtresu, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(10, 10, 10)
-                                .addComponent(jTxtrdu1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(20, 20, 20)
-                                .addComponent(jTxtrdu2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(30, 30, 30)
-                        .addComponent(jTxtrateu, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(30, 30, 30)
-                        .addComponent(jTxtresu, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGap(33, 33, 33)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                            .addComponent(jTxtrdu1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jCrdu1))
+                                        .addGap(20, 20, 20)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                            .addComponent(jTxtrdu2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jCrdu2))
+                                        .addGap(30, 30, 30)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                            .addComponent(jTxtrateu, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jCrateu))))))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -663,32 +689,32 @@ public class user_ui extends javax.swing.JFrame {
     if (operations == "+")
     {
         result = firstnum + secondnum;
-        answer = String.format("%.0f", result);
+        answer = String.format("%.2f", result);
         jTxtcalDisplay.setText(answer);
     }
     else if (operations == "-")
     {
      result = firstnum - secondnum;
-     answer = String.format("%.0f", result);
+     answer = String.format("%.2f", result);
      jTxtcalDisplay.setText(answer);   
     }
     else if (operations == "*")
     {
      result = firstnum * secondnum;
-     answer = String.format("%.0f", result);
+     answer = String.format("%.2f", result);
      jTxtcalDisplay.setText(answer);   
     }
     else if (operations == "/")
     {
      result = firstnum / secondnum;
-     answer = String.format("%.0f", result);
+     answer = String.format("%.2f", result);
      jTxtcalDisplay.setText(answer);   
     }
     
     else if (operations == "%")
     {
      result = firstnum % secondnum;
-     answer = String.format("%.0f", result);
+     answer = String.format("%.2f", result);
      jTxtcalDisplay.setText(answer);   
     }    // TODO add your handling code here:
     }//GEN-LAST:event_jBtnresActionPerformed
@@ -781,9 +807,11 @@ public class user_ui extends javax.swing.JFrame {
     }//GEN-LAST:event_jBtndivActionPerformed
 
     private void jBtndotActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtndotActionPerformed
-    firstnum = Double.parseDouble(jTxtcalDisplay.getText());
-        jTxtcalDisplay.setText("");
-        operations = ".";  
+    if(!jTxtcalDisplay.getText().contains("."))
+    {
+        jTxtcalDisplay.setText(jTxtcalDisplay.getText() + jBtndot.getText());
+    }
+         
         // TODO add your handling code here:
     }//GEN-LAST:event_jBtndotActionPerformed
 
@@ -878,25 +906,71 @@ public class user_ui extends javax.swing.JFrame {
     double readings1 = Double.parseDouble(jTxtrdu1.getText());
     double readings2 = Double.parseDouble(jTxtrdu2.getText());
     double resu = Double.parseDouble(jTxtresu.getText());
+    double billingsdue = Double.parseDouble(jTxtbdue.getText());
+    String tname = jTxtrateu.getText();
     //double ratings = Double.parseDouble(jTxtrate.getText());
     
     jTxtcomresu.append("Comparison between the two readings done. \n\n" + 
             "Current bill reading: \n" + readings1 + "\n\nPast reading:\n" + readings2 + "\n\nConsumption in kWh:\n" + resu + 
             "\n\nThank you for using the solution! \n Calculated by Energy Forecast.");
         // TODO add your handling code here:
+        if(tname.equals(""))
+    {
+        JOptionPane.showMessageDialog(null, "Rate not displayed");  
+    }
+        else {
+            PreparedStatement pt;
+            String bquery = "INSERT INTO `bills`(`bill_read_1`, `bill_read_2`, `bill_reads_comp`,`bill_cost` ) VALUES (?,?,?,?)";
+            
+            try{
+                pt = NuConnection.getConnection().prepareStatement(bquery);
+            
+            pt.setDouble(1, readings1);
+            pt.setDouble(2, readings2);
+            pt.setDouble(3, resu);
+            pt.setDouble(4, billingsdue);
+            
+            if(pt.executeUpdate() > 0)
+            {
+                JOptionPane.showMessageDialog(null, "New bill Add");
+            }
+             
+// TODO add your handling code here:
+        } catch (SQLException ex) {
+            Logger.getLogger(user_ui.class.getName()).log(Level.SEVERE, null, ex); 
+        
+            }
+                
+            
+        }
     }//GEN-LAST:event_jBtnpres2ActionPerformed
 
     private void jBtnres2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnres2ActionPerformed
-     if ((jCrdu1.isSelected()) || (jCrdu2.isSelected())) //|| (jCrate.isSelected()))
+    
+    
+    
+        if ((jCrdu1.isSelected()) || (jCrdu2.isSelected())) //|| (jCrate.isSelected()))
     {
         double read1 = Double.parseDouble(jTxtrdu1.getText()) * 1;
         double read2 = Double.parseDouble(jTxtrdu2.getText()) * 1;
         //double rrate = Double.parseDouble(jTxtrate.getText()) * 1;
         double cmptot =  read1 - read2;
+         double cmptotcal =  read1 - read2;
+        double billtot = cmptotcal * 3.5;
         
         String totalcom = String.format("%.0f", cmptot);
         jTxtresu.setText((String)totalcom);
+        
+        String totalcoms = String.format("%.0f", cmptotcal);
+        jTxtbillcalc.setText((String)totalcoms);
+        
+        String ratecalc = String.format("%.2f",billtot);
+        jTxtbdue.setText((String)ratecalc);
+        
+       
     }
+    
+        
         // TODO add your handling code here:
     }//GEN-LAST:event_jBtnres2ActionPerformed
 
@@ -928,24 +1002,16 @@ public class user_ui extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jBtnauiActionPerformed
 
-    private void jBtnvbActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnvbActionPerformed
-    if ((jCrdu1.isSelected()) || (jCrdu2.isSelected())) //|| (jCrate.isSelected()))
-    {
-        double read1 = Double.parseDouble(jTxtrdu1.getText());
-        double read2 = Double.parseDouble(jTxtrdu2.getText());
-        //double rrate = Double.parseDouble(jTxtrate.getText()) * 1;
-        double cmptotcal =  read1 - read2;
-        double billtot = cmptotcal * 3.5;
-        
-        
-        String totalcom = String.format("%.0f", cmptotcal);
-        jTxtbillcalc.setText((String)totalcom);
-        
-        String ratecalc = String.format("£%.2f",billtot);
-        jTxtbdue.setText((String)ratecalc);
-    }
+    private void jlblbillhelpMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlblbillhelpMouseClicked
+        JLabel textbillinfo = new JLabel("Before clicking 'Print all' please select 'Show Rate' in order to 'add new bill'");
+        JLabel textcalcinfo = new JLabel("The formula to calculate bills manually is ('Current Bill Beading 1' - 'Past Bill Reading 2') * 3.5");
+        JPanel paneltwo = new JPanel();
+        paneltwo.setLayout(new BorderLayout());
+        paneltwo.add(textbillinfo, BorderLayout.NORTH);
+        paneltwo.add(textcalcinfo, BorderLayout.SOUTH);
+        JOptionPane.showMessageDialog(null, paneltwo, "Add Bills To System Help?", JOptionPane.PLAIN_MESSAGE);
         // TODO add your handling code here:
-    }//GEN-LAST:event_jBtnvbActionPerformed
+    }//GEN-LAST:event_jlblbillhelpMouseClicked
 
     /**
      * @param args the command line arguments
@@ -1008,12 +1074,12 @@ public class user_ui extends javax.swing.JFrame {
     private javax.swing.JButton jBtnres;
     private javax.swing.JButton jBtnres2;
     private javax.swing.JButton jBtnulo;
-    private javax.swing.JButton jBtnvb;
     private javax.swing.JCheckBox jCrateu;
     private javax.swing.JCheckBox jCrdu1;
     private javax.swing.JCheckBox jCrdu2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -1030,6 +1096,7 @@ public class user_ui extends javax.swing.JFrame {
     private javax.swing.JTextField jTxtrdu1;
     private javax.swing.JTextField jTxtrdu2;
     private javax.swing.JTextField jTxtresu;
+    private javax.swing.JLabel jlblbillhelp;
     private javax.swing.JLabel jlbllogo2;
     private javax.swing.JLabel jlblwel2;
     // End of variables declaration//GEN-END:variables

@@ -6,8 +6,14 @@
 package guests_ui;
 
 
+import foresLogin.foreLogin;
 import foresreg.forereg;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import java.awt.BorderLayout;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
 
 
@@ -53,6 +59,9 @@ public class guest_ui extends javax.swing.JFrame {
         jCrd2 = new javax.swing.JCheckBox();
         jBtnclear = new javax.swing.JButton();
         jBtnpres = new javax.swing.JButton();
+        jBtnglog = new javax.swing.JButton();
+        jlblhelprd1 = new javax.swing.JLabel();
+        jlblhelprd2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(1400, 700));
@@ -90,6 +99,7 @@ public class guest_ui extends javax.swing.JFrame {
         jBtncmp.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jBtncmp.setText("Compare");
         jBtncmp.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(0, 153, 51), new java.awt.Color(0, 153, 51)));
+        jBtncmp.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jBtncmp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBtncmpActionPerformed(evt);
@@ -215,6 +225,7 @@ public class guest_ui extends javax.swing.JFrame {
         jBtnclear.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jBtnclear.setText("Clear");
         jBtnclear.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(0, 153, 51), new java.awt.Color(0, 153, 51)));
+        jBtnclear.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jBtnclear.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBtnclearActionPerformed(evt);
@@ -225,9 +236,42 @@ public class guest_ui extends javax.swing.JFrame {
         jBtnpres.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jBtnpres.setText("Print all");
         jBtnpres.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(0, 153, 51), new java.awt.Color(0, 153, 51)));
+        jBtnpres.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jBtnpres.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBtnpresActionPerformed(evt);
+            }
+        });
+
+        jBtnglog.setBackground(new java.awt.Color(153, 255, 0));
+        jBtnglog.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jBtnglog.setText("Login");
+        jBtnglog.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jBtnglog.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnglogActionPerformed(evt);
+            }
+        });
+
+        jlblhelprd1.setBackground(new java.awt.Color(51, 204, 255));
+        jlblhelprd1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jlblhelprd1.setText("Click here for input help");
+        jlblhelprd1.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(0, 204, 255)), javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED)));
+        jlblhelprd1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jlblhelprd1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jlblhelprd1MouseClicked(evt);
+            }
+        });
+
+        jlblhelprd2.setBackground(new java.awt.Color(51, 0, 255));
+        jlblhelprd2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jlblhelprd2.setText("Click here for output help");
+        jlblhelprd2.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(0, 0, 204)), javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED)));
+        jlblhelprd2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jlblhelprd2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jlblhelprd2MouseClicked(evt);
             }
         });
 
@@ -243,25 +287,30 @@ public class guest_ui extends javax.swing.JFrame {
                         .addGap(10, 10, 10)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jTxtthl, javax.swing.GroupLayout.PREFERRED_SIZE, 930, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jlblwel, javax.swing.GroupLayout.PREFERRED_SIZE, 720, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jBtnglog)
+                                .addComponent(jlblwel, javax.swing.GroupLayout.PREFERRED_SIZE, 720, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(100, 100, 100)
+                        .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(60, 60, 60)
-                                .addComponent(jCrd1, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(80, 80, 80)
+                                .addGap(267, 267, 267)
                                 .addComponent(jCrd2, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(230, 230, 230)
+                                .addComponent(jlblhelprd2)
+                                .addGap(234, 234, 234)
                                 .addComponent(jCrate, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jBtnpres, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(10, 10, 10)
+                                .addGap(191, 191, 191)
                                 .addComponent(jBtncmp, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(10, 10, 10)
-                                .addComponent(jBtnclear, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jBtnpres, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jBtnclear, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jlblhelprd1)
+                                .addGap(82, 82, 82)
+                                .addComponent(jCrd1, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jTxtrd1, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jTxtrd2, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -269,7 +318,7 @@ public class guest_ui extends javax.swing.JFrame {
                             .addComponent(jTxtres, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(20, 20, 20)
                         .addComponent(jPnlDisplay, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(115, Short.MAX_VALUE))
+                .addContainerGap(53, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -279,32 +328,44 @@ public class guest_ui extends javax.swing.JFrame {
                     .addComponent(jPnllogo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jTxtthl, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(54, 54, 54)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jBtnglog, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jlblwel, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(20, 20, 20)
-                        .addComponent(jCrd1, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jPnlDisplay, javax.swing.GroupLayout.PREFERRED_SIZE, 430, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jTxtrd1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(10, 10, 10)
+                                .addComponent(jTxtrd2, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(10, 10, 10)
+                                .addComponent(jTxtrate, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(10, 10, 10)
+                                .addComponent(jTxtres, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(23, 23, 23)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jlblhelprd1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jCrd1, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(61, 61, 61)
                         .addComponent(jCrd2, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(41, 41, 41)
-                        .addComponent(jCrate, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(41, 41, 41)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(41, 41, 41)
+                                .addComponent(jCrate, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(41, 41, 41))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jlblhelprd2, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(19, 19, 19)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jBtnclear, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jBtnpres, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jBtncmp, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jBtnclear, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jTxtrd1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(10, 10, 10)
-                        .addComponent(jTxtrd2, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(10, 10, 10)
-                        .addComponent(jTxtrate, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(10, 10, 10)
-                        .addComponent(jTxtres, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jPnlDisplay, javax.swing.GroupLayout.PREFERRED_SIZE, 430, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(65, Short.MAX_VALUE))
+                            .addComponent(jBtncmp, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(63, Short.MAX_VALUE))
         );
 
         pack();
@@ -411,6 +472,49 @@ public class guest_ui extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jBtnregActionPerformed
 
+    private void jBtnglogActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnglogActionPerformed
+        foreLogin lgf = new foreLogin();
+        lgf.setVisible(true);
+        lgf.pack();
+        lgf.setLocationRelativeTo(null);
+        lgf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.dispose();
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jBtnglogActionPerformed
+
+    private void jlblhelprd1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlblhelprd1MouseClicked
+        JLabel textrd1 = new JLabel("Step 1. Select checkbox to enter 'Current Bill Reading 1'");
+        JLabel textrd2 = new JLabel("Step 2. Select checkbox to enter 'Current Bill Reading 2'");
+        JLabel textrd3 = new JLabel("Step 3. Select checkbox to 'Show Charging Rate'");
+        
+        JPanel panel = new JPanel();
+        panel.setLayout(new BorderLayout());
+        panel.add(textrd1, BorderLayout.NORTH);
+        panel.add(textrd2, BorderLayout.AFTER_LINE_ENDS);
+        panel.add(textrd3, BorderLayout.SOUTH);
+        
+        JOptionPane.showMessageDialog(null, panel, "Input Help?", JOptionPane.PLAIN_MESSAGE);
+        
+        
+        //JOptionPane.showMessageDialog(this, "Select checkbox to enter 'Current Bill Reading 1'");
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jlblhelprd1MouseClicked
+
+    private void jlblhelprd2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlblhelprd2MouseClicked
+        JLabel textcmp = new JLabel("Step 4. After entering 'Bill Reading 1', 'Bill Reading 2', and selecting 'Show Rate' click on 'Compare'");
+        JLabel textpa = new JLabel("Step 5. Click on 'Print all' to view receipt");
+        JLabel textclr = new JLabel("Step 6. Click on 'Clear' to remove inputs");
+        
+        JPanel panel = new JPanel();
+        panel.setLayout(new BorderLayout());
+        panel.add(textcmp, BorderLayout.NORTH);
+        panel.add(textpa, BorderLayout.LINE_START);
+        panel.add(textclr, BorderLayout.SOUTH);
+        
+        JOptionPane.showMessageDialog(null, panel, "Output Help?", JOptionPane.PLAIN_MESSAGE);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jlblhelprd2MouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -449,6 +553,7 @@ public class guest_ui extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBtnclear;
     private javax.swing.JButton jBtncmp;
+    private javax.swing.JButton jBtnglog;
     private javax.swing.JButton jBtnpres;
     private javax.swing.JButton jBtnreg;
     private javax.swing.JCheckBox jCrate;
@@ -465,6 +570,8 @@ public class guest_ui extends javax.swing.JFrame {
     private javax.swing.JTextField jTxtrd2;
     private javax.swing.JTextField jTxtres;
     private javax.swing.JTextField jTxtthl;
+    private javax.swing.JLabel jlblhelprd1;
+    private javax.swing.JLabel jlblhelprd2;
     private javax.swing.JLabel jlbllogo;
     private javax.swing.JLabel jlblwel;
     // End of variables declaration//GEN-END:variables

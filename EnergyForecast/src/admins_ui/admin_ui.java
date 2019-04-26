@@ -9,6 +9,7 @@ package admins_ui;
 
 import foresreg.forereg;
 import guests_ui.guest_ui;
+import static java.lang.ProcessBuilder.Redirect.to;
 import java.sql.DriverManager;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -53,7 +54,6 @@ public class admin_ui extends javax.swing.JFrame {
 
         jPnllogo3 = new javax.swing.JPanel();
         jlbllogo2 = new javax.swing.JLabel();
-        jBtnsuab = new javax.swing.JButton();
         jBtnvuab = new javax.swing.JButton();
         jBtnvuap = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
@@ -63,10 +63,26 @@ public class admin_ui extends javax.swing.JFrame {
         jproTable = new javax.swing.JTable();
         jPanel3 = new javax.swing.JPanel();
         jBtnadnu = new javax.swing.JButton();
-        jPanel6 = new javax.swing.JPanel();
+        jPanel4 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jTextadfor = new javax.swing.JTextField();
+        jTxtadsur = new javax.swing.JTextField();
+        jtxtadusrn = new javax.swing.JTextField();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTxtaduaddr = new javax.swing.JTextArea();
+        jPasswordField1ad = new javax.swing.JPasswordField();
+        jBtnadclear = new javax.swing.JButton();
         jPanel7 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jubillTable = new javax.swing.JTable();
         jBtnadminlo = new javax.swing.JButton();
         jBtnrmov = new javax.swing.JButton();
+        jBtnupdate = new javax.swing.JButton();
+        jBtndelbi = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -91,15 +107,15 @@ public class admin_ui extends javax.swing.JFrame {
                 .addContainerGap(33, Short.MAX_VALUE))
         );
 
-        jBtnsuab.setBackground(new java.awt.Color(204, 204, 255));
-        jBtnsuab.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jBtnsuab.setText("Search User's Bills (SUB)");
-        jBtnsuab.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-
         jBtnvuab.setBackground(new java.awt.Color(204, 204, 255));
         jBtnvuab.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jBtnvuab.setText("View User's Bills (VUB)");
         jBtnvuab.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jBtnvuab.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnvuabActionPerformed(evt);
+            }
+        });
 
         jBtnvuap.setBackground(new java.awt.Color(204, 204, 255));
         jBtnvuap.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -131,7 +147,7 @@ public class admin_ui extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 1016, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 1176, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -161,7 +177,7 @@ public class admin_ui extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(23, 23, 23)
                 .addComponent(jBtnadnu, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(659, Short.MAX_VALUE))
+                .addContainerGap(819, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -173,31 +189,134 @@ public class admin_ui extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Add users", jPanel3);
 
-        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
-        jPanel6.setLayout(jPanel6Layout);
-        jPanel6Layout.setHorizontalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1036, Short.MAX_VALUE)
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel1.setText("Forename:");
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel2.setText("Address:");
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel3.setText("Surname:");
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel4.setText("Password:");
+
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel5.setText("Username");
+
+        jTextadfor.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+
+        jTxtadsur.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+
+        jtxtadusrn.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+
+        jTxtaduaddr.setColumns(20);
+        jTxtaduaddr.setFont(new java.awt.Font("Monospaced", 1, 13)); // NOI18N
+        jTxtaduaddr.setRows(5);
+        jScrollPane2.setViewportView(jTxtaduaddr);
+
+        jPasswordField1ad.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+
+        jBtnadclear.setBackground(new java.awt.Color(255, 51, 51));
+        jBtnadclear.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jBtnadclear.setText("Clear");
+        jBtnadclear.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jBtnadclear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnadclearActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jTextadfor, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addGap(18, 18, 18)
+                        .addComponent(jPasswordField1ad))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addGap(18, 18, 18)
+                        .addComponent(jTxtadsur, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel2))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jtxtadusrn, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addComponent(jScrollPane2)
+                                .addGap(3, 3, 3)))))
+                .addGap(18, 18, 18)
+                .addComponent(jBtnadclear)
+                .addContainerGap(696, Short.MAX_VALUE))
         );
-        jPanel6Layout.setVerticalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 445, Short.MAX_VALUE)
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(41, 41, 41)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jTextadfor, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(25, 25, 25)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(jTxtadsur, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(jtxtadusrn, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(24, 24, 24)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(jPasswordField1ad, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jBtnadclear, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(80, 80, 80))
         );
 
-        jTabbedPane1.addTab("SUB", jPanel6);
+        jTabbedPane1.addTab("Update users", jPanel4);
+
+        jubillTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Bill_ID", "Bill_Read_1", "Bill_Read_2", "Bill_Reads_Consumption", "Bills_Cost", "User_ID"
+            }
+        ));
+        jScrollPane1.setViewportView(jubillTable);
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1036, Short.MAX_VALUE)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 881, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(297, Short.MAX_VALUE))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 445, Short.MAX_VALUE)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 388, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(38, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("VUB", jPanel7);
+        jTabbedPane1.addTab("View User Bills", jPanel7);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -206,7 +325,7 @@ public class admin_ui extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jTabbedPane1)
-                .addContainerGap())
+                .addGap(43, 43, 43))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -228,11 +347,30 @@ public class admin_ui extends javax.swing.JFrame {
 
         jBtnrmov.setBackground(new java.awt.Color(255, 0, 51));
         jBtnrmov.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jBtnrmov.setText("Remove Users");
+        jBtnrmov.setText("Remove User");
         jBtnrmov.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jBtnrmov.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBtnrmovActionPerformed(evt);
+            }
+        });
+
+        jBtnupdate.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jBtnupdate.setText("Update User Data");
+        jBtnupdate.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jBtnupdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnupdateActionPerformed(evt);
+            }
+        });
+
+        jBtndelbi.setBackground(new java.awt.Color(204, 0, 0));
+        jBtndelbi.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jBtndelbi.setText("Delete Incorrect Bills");
+        jBtndelbi.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jBtndelbi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtndelbiActionPerformed(evt);
             }
         });
 
@@ -245,10 +383,11 @@ public class admin_ui extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPnllogo3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(jBtnupdate, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jBtnrmov, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jBtnvuab, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jBtnsuab, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jBtnvuap, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(jBtnvuap, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jBtndelbi, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(40, 40, 40)
@@ -265,14 +404,16 @@ public class admin_ui extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(10, 10, 10)
                         .addComponent(jPnllogo3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(50, 50, 50)
+                        .addGap(29, 29, 29)
                         .addComponent(jBtnvuap, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(10, 10, 10)
-                        .addComponent(jBtnsuab, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(10, 10, 10)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jBtnvuab, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jBtnrmov, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jBtnupdate, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jBtnrmov, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(13, 13, 13)
+                        .addComponent(jBtndelbi, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(79, 79, 79)
                         .addComponent(jBtnadminlo)
@@ -299,6 +440,33 @@ public class admin_ui extends javax.swing.JFrame {
   // TODO add your handling code here:
     }//GEN-LAST:event_jBtnvuapActionPerformed
 
+    private void jBtnrmovActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnrmovActionPerformed
+    
+    //Selected row function
+    try{
+        Class.forName("com.mysql.jdbc.Driver");
+        con = DriverManager.getConnection("jdbc:mysql://localhost:3306/energy_forecast_db?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "root", "");
+        int row = jproTable.getSelectedRow();
+        String value = (jproTable.getModel().getValueAt(row, 0).toString());
+        String uquery = "DELETE FROM `registered_users` WHERE user_id="+value;
+        PreparedStatement pts = con.prepareStatement(uquery);
+        pts.executeUpdate();
+        DefaultTableModel model = (DefaultTableModel)jproTable.getModel();  
+        model.setRowCount(0);
+        showTable();
+        JOptionPane.showMessageDialog(null, "User Deleted From System");
+    }catch (Exception ex)
+    {
+        JOptionPane.showMessageDialog(null, ex + "...NO USER SELECTED!");
+    }
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jBtnrmovActionPerformed
+
+    private void jBtnvuabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnvuabActionPerformed
+    showBillsTable();
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jBtnvuabActionPerformed
+
     private void jBtnadnuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnadnuActionPerformed
         forereg rgfu = new forereg();
         rgfu.setVisible(true);
@@ -310,19 +478,65 @@ public class admin_ui extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jBtnadnuActionPerformed
 
-    private void jBtnrmovActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnrmovActionPerformed
+    private void jBtnupdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnupdateActionPerformed
+    String firsname = jTextadfor.getText();
+    String suname = jTxtadsur.getText();
+    String address3 = jTxtaduaddr.getText();
+    String usrnname = jtxtadusrn.getText();
+    String nuupass = String.valueOf(jPasswordField1ad.getPassword());
     
-    //Selected row function
     try{
-        DefaultTableModel model = (DefaultTableModel) jproTable.getModel();    
-        int SelectedRowIndex = jproTable.getSelectedRow();
-        model.removeRow(SelectedRowIndex);
+        Class.forName("com.mysql.jdbc.Driver");
+        con = DriverManager.getConnection("jdbc:mysql://localhost:3306/energy_forecast_db?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "root", "");
+        int row = jproTable.getSelectedRow();
+        String value = (jproTable.getModel().getValueAt(row, 0).toString());
+        String uquery = "UPDATE `registered_users` SET `user_fname`=?,`user_lname`=?,`user_address`=?,`user_uname`=?,`user_pass`=? where user_id="+value;
+        PreparedStatement pts = con.prepareStatement(uquery);
+        pts.setString(1, firsname);
+        pts.setString(2, suname);
+        pts.setString(3, address3);
+        pts.setString(4, usrnname);
+        pts.setString(5, nuupass);
+        pts.executeUpdate();
+        DefaultTableModel model = (DefaultTableModel)jproTable.getModel();
+        model.setRowCount(0);
+        showTable();
+        JOptionPane.showMessageDialog(null, "Updated successfully!");
+    } catch (Exception ex) {
+        System.out.println(ex.getMessage());
+    }
+      
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jBtnupdateActionPerformed
+
+    private void jBtnadclearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnadclearActionPerformed
+    jTextadfor.setText("");
+    jTxtadsur.setText("");
+    jTxtaduaddr.setText("");
+    jtxtadusrn.setText("");
+    jPasswordField1ad.setText("");
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jBtnadclearActionPerformed
+
+    private void jBtndelbiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtndelbiActionPerformed
+     try{
+        Class.forName("com.mysql.jdbc.Driver");
+        con = DriverManager.getConnection("jdbc:mysql://localhost:3306/energy_forecast_db?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "root", "");
+        int row = jubillTable.getSelectedRow();
+        String value = (jubillTable.getModel().getValueAt(row, 0).toString());
+         String uquery = "DELETE FROM `bills` WHERE b_id="+value;
+        PreparedStatement pts = con.prepareStatement(uquery);
+        pts.executeUpdate();
+        DefaultTableModel model = (DefaultTableModel)jubillTable.getModel();  
+        model.setRowCount(0);
+        showBillsTable();
+        JOptionPane.showMessageDialog(null, "Bill Deleted From System");
     }catch (Exception ex)
     {
-        JOptionPane.showMessageDialog(null, ex);
+        JOptionPane.showMessageDialog(null, ex + "...NO BILL SELECTED!");
     }
         // TODO add your handling code here:
-    }//GEN-LAST:event_jBtnrmovActionPerformed
+    }//GEN-LAST:event_jBtndelbiActionPerformed
  public void showTable(){
         try{
             con = DriverManager.getConnection("jdbc:mysql://localhost:3306/energy_forecast_db?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "root", "");
@@ -330,6 +544,25 @@ public class admin_ui extends javax.swing.JFrame {
             pst = con.prepareStatement(sql);
             sr = pst.executeQuery();
             jproTable.setModel(DbUtils.resultSetToTableModel(sr));
+            
+           
+            
+            
+        }
+        catch(Exception ex){
+            JOptionPane.showMessageDialog(null, ex);
+            
+            
+            
+        }}
+ 
+  public void showBillsTable(){
+        try{
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/energy_forecast_db?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "root", "");
+            String sql = "SELECT * FROM `bills`";
+            pst = con.prepareStatement(sql);
+            sr = pst.executeQuery();
+            jubillTable.setModel(DbUtils.resultSetToTableModel(sr));
             
            
             
@@ -377,21 +610,36 @@ public class admin_ui extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jBtnadclear;
     private javax.swing.JButton jBtnadminlo;
     private javax.swing.JButton jBtnadnu;
+    private javax.swing.JButton jBtndelbi;
     private javax.swing.JButton jBtnrmov;
-    private javax.swing.JButton jBtnsuab;
+    private javax.swing.JButton jBtnupdate;
     private javax.swing.JButton jBtnvuab;
     private javax.swing.JButton jBtnvuap;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel7;
+    private javax.swing.JPasswordField jPasswordField1ad;
     private javax.swing.JPanel jPnllogo3;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTextField jTextadfor;
+    private javax.swing.JTextField jTxtadsur;
+    private javax.swing.JTextArea jTxtaduaddr;
     private javax.swing.JLabel jlbllogo2;
     private javax.swing.JTable jproTable;
+    private javax.swing.JTextField jtxtadusrn;
+    private javax.swing.JTable jubillTable;
     // End of variables declaration//GEN-END:variables
 }

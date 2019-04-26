@@ -65,6 +65,7 @@ public class forereg extends javax.swing.JFrame {
         setUndecorated(true);
 
         jPnlreg1.setBackground(new java.awt.Color(255, 102, 51));
+        jPnlreg1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         jlblclos2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jlblclos2.setForeground(new java.awt.Color(255, 255, 255));
@@ -146,6 +147,7 @@ public class forereg extends javax.swing.JFrame {
         jBtnregi.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jBtnregi.setForeground(new java.awt.Color(255, 255, 255));
         jBtnregi.setText("Register");
+        jBtnregi.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jBtnregi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBtnregiActionPerformed(evt);
@@ -155,7 +157,8 @@ public class forereg extends javax.swing.JFrame {
         jBtnclea2.setBackground(new java.awt.Color(255, 51, 51));
         jBtnclea2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jBtnclea2.setForeground(new java.awt.Color(255, 255, 255));
-        jBtnclea2.setText("Clear");
+        jBtnclea2.setText("Close");
+        jBtnclea2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jBtnclea2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBtnclea2ActionPerformed(evt);

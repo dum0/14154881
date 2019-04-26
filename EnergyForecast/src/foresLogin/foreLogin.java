@@ -139,6 +139,7 @@ public class foreLogin extends javax.swing.JFrame {
         jBtnlog.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jBtnlog.setForeground(new java.awt.Color(255, 255, 255));
         jBtnlog.setText("Login");
+        jBtnlog.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jBtnlog.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBtnlogActionPerformed(evt);
@@ -148,7 +149,8 @@ public class foreLogin extends javax.swing.JFrame {
         jBtnclea.setBackground(new java.awt.Color(255, 51, 51));
         jBtnclea.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jBtnclea.setForeground(new java.awt.Color(255, 255, 255));
-        jBtnclea.setText("Clear");
+        jBtnclea.setText("Close");
+        jBtnclea.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jBtnclea.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBtncleaActionPerformed(evt);
@@ -272,7 +274,7 @@ public class foreLogin extends javax.swing.JFrame {
      String passw = String.valueOf(jPasswordField1.getPassword());
      
      String query = "SELECT * FROM `registered_users` WHERE `user_uname`=? AND `user_pass` =?";
-     String adquery = "SELECT * FROM `privilege users` WHERE `username` =? AND `password` =?";
+     String adquery = "SELECT * FROM `privilege_users` WHERE `username` =? AND `password` =?";
      try {
             ps = NuConnection.getConnection().prepareStatement(query);
             pst = NuConnection.getConnection().prepareStatement(adquery);
