@@ -7,6 +7,7 @@ package admins_ui;
 
 
 
+import NusConnection.NuConnection;
 import foresreg.forereg;
 import guests_ui.guest_ui;
 import static java.lang.ProcessBuilder.Redirect.to;
@@ -61,6 +62,9 @@ public class admin_ui extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         jproTable = new javax.swing.JTable();
+        jLabel6 = new javax.swing.JLabel();
+        jTxtsearch = new javax.swing.JTextField();
+        jBtnsearch = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jBtnadnu = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
@@ -141,21 +145,46 @@ public class admin_ui extends javax.swing.JFrame {
         ));
         jScrollPane3.setViewportView(jproTable);
 
+        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel6.setText("Search for users' ID:");
+
+        jTxtsearch.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+
+        jBtnsearch.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jBtnsearch.setText("Search");
+        jBtnsearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnsearchActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 1176, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 871, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jTxtsearch, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jBtnsearch)))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(21, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(jTxtsearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jBtnsearch))
+                .addGap(13, 13, 13)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 358, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(22, 22, 22))
         );
 
         jTabbedPane1.addTab("View User Profiles", jPanel2);
@@ -177,7 +206,7 @@ public class admin_ui extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(23, 23, 23)
                 .addComponent(jBtnadnu, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(819, Short.MAX_VALUE))
+                .addContainerGap(532, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -258,7 +287,7 @@ public class admin_ui extends javax.swing.JFrame {
                                 .addGap(3, 3, 3)))))
                 .addGap(18, 18, 18)
                 .addComponent(jBtnadclear)
-                .addContainerGap(696, Short.MAX_VALUE))
+                .addContainerGap(409, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -306,7 +335,7 @@ public class admin_ui extends javax.swing.JFrame {
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 881, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(297, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -324,8 +353,7 @@ public class admin_ui extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTabbedPane1)
-                .addGap(43, 43, 43))
+                .addComponent(jTabbedPane1))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -390,12 +418,12 @@ public class admin_ui extends javax.swing.JFrame {
                         .addComponent(jBtndelbi, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(40, 40, 40)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jBtnadminlo)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addComponent(jBtnadminlo))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(40, 40, 40)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(288, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -537,6 +565,34 @@ public class admin_ui extends javax.swing.JFrame {
     }
         // TODO add your handling code here:
     }//GEN-LAST:event_jBtndelbiActionPerformed
+
+    private void jBtnsearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnsearchActionPerformed
+    PreparedStatement ps;
+    ResultSet sr;
+    String uid = jTxtsearch.getText();
+    String una = jTxtsearch.getText();
+    
+    String usquery = "SELECT * FROM `registered_users` WHERE `user_id`=? OR `user_uname`=?";
+    try {
+            ps = NuConnection.getConnection().prepareStatement(usquery);
+            ps.setString(1, uid);
+            ps.setString(2, una);
+            sr = ps.executeQuery();
+             if(sr.next())
+                {
+               JOptionPane.showMessageDialog(null, "User exists");
+            }
+             else
+            {
+                JOptionPane.showMessageDialog(null, "User does not exist in system");
+                
+            }
+            } catch (SQLException ex) {
+            Logger.getLogger(admin_ui.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jBtnsearchActionPerformed
  public void showTable(){
         try{
             con = DriverManager.getConnection("jdbc:mysql://localhost:3306/energy_forecast_db?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "root", "");
@@ -615,6 +671,7 @@ public class admin_ui extends javax.swing.JFrame {
     private javax.swing.JButton jBtnadnu;
     private javax.swing.JButton jBtndelbi;
     private javax.swing.JButton jBtnrmov;
+    private javax.swing.JButton jBtnsearch;
     private javax.swing.JButton jBtnupdate;
     private javax.swing.JButton jBtnvuab;
     private javax.swing.JButton jBtnvuap;
@@ -623,6 +680,7 @@ public class admin_ui extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -637,6 +695,7 @@ public class admin_ui extends javax.swing.JFrame {
     private javax.swing.JTextField jTextadfor;
     private javax.swing.JTextField jTxtadsur;
     private javax.swing.JTextArea jTxtaduaddr;
+    private javax.swing.JTextField jTxtsearch;
     private javax.swing.JLabel jlbllogo2;
     private javax.swing.JTable jproTable;
     private javax.swing.JTextField jtxtadusrn;
